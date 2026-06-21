@@ -159,9 +159,7 @@ function Footer() {
             © {year} Mr. Muhammad Suhail. All rights reserved.
           </p>
 
-          <p className="text-sm font-semibold text-slate-500">
-            Built with React, Vite and Tailwind CSS.
-          </p>
+          
         </div>
       </div>
     </footer>

@@ -251,10 +251,7 @@ function ContactUs({ isPage = false }) {
                 <Send size={18} />
               </button>
 
-              <p className="mt-4 text-center text-xs font-semibold leading-6 text-slate-500">
-                No backend is used. This form sends messages through a
-                frontend-friendly email forwarding service.
-              </p>
+             
             </div>
           </form>
         </div>
