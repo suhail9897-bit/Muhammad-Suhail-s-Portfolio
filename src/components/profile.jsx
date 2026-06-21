@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import profileImage from "../assets/profile_image2.png";
 import Tooltip from "../utility files/tooltip";
-import { X } from "lucide-react";
+import { X, ShieldCheck } from "lucide-react";
 import { HiBadgeCheck } from "react-icons/hi";
 import loadingVideo from "../assets/profileVideo.mp4";
+
 
 
 const PROFILE_LOADING_DURATION = 5000;
@@ -78,19 +80,19 @@ function LoadingProfile({ duration = PROFILE_LOADING_DURATION }) {
             Loading Profile...
           </h2>
 
-          <p className="mt-3 text-xs font-black uppercase tracking-[0.38em] text-emerald-300 drop-shadow-[0_4px_18px_rgba(0,0,0,0.75)] md:text-sm">
+          <p className="mt-3 text-xs font-black uppercase tracking-[0.38em] text-cyan-300 drop-shadow-[0_4px_18px_rgba(0,0,0,0.75)] md:text-sm">
             Preparing professional profile
           </p>
 
           <div className="mt-9 w-full max-w-md">
             <div className="h-2.5 w-full overflow-hidden rounded-full border border-white/20 bg-black/35 shadow-[0_0_22px_rgba(0,0,0,0.35)]">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300 shadow-[0_0_24px_rgba(52,211,153,0.75)] transition-[width] duration-100 ease-linear"
+               className="h-full rounded-full bg-gradient-to-r from-cyan-300 via-indigo-300 to-pink-300 shadow-[0_0_24px_rgba(103,232,249,0.45)] transition-[width] duration-100 ease-linear"
                 style={{ width: `${progress}%` }}
               />
             </div>
 
-            <p className="mt-4 text-lg font-black text-emerald-200 drop-shadow-[0_3px_14px_rgba(0,0,0,0.8)]">
+            <p className="mt-4 text-lg font-black text-cyan-200 drop-shadow-[0_3px_14px_rgba(0,0,0,0.8)]">
               {progress}%
             </p>
           </div>
@@ -101,16 +103,36 @@ function LoadingProfile({ duration = PROFILE_LOADING_DURATION }) {
 }
 function InfoCard({ label, value }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-5">
-      <p className="text-sm font-semibold text-white/40">{label}</p>
-      <h3 className="mt-1 text-lg font-black text-white">{value}</h3>
+    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] p-5">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(103,232,249,0.08),transparent_36%,rgba(129,140,248,0.08))]" />
+
+      <div className="relative">
+        <p className="text-sm font-bold text-slate-400">{label}</p>
+        <h3 className="mt-1 pb-1 bg-gradient-to-r from-cyan-200 via-sky-200 to-indigo-200 bg-clip-text text-lg font-black leading-[1.18] text-transparent">
+          {value}
+        </h3>
+      </div>
     </div>
   );
 }
 
 function Profile({ open, onClose }) {
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
+  const handleContactClick = () => {
+    onClose();
+
+    setTimeout(() => {
+      navigate("/contact");
+
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "auto",
+      });
+    }, 0);
+  };
   useEffect(() => {
     if (!open) return;
 
@@ -171,12 +193,11 @@ const buildItems = [
 ];
 
   return (
-    
-    <div className="scroll-profile fixed inset-0 z-[100] h-screen w-full max-w-full overflow-y-auto overflow-x-hidden bg-[#080808]/95 text-white backdrop-blur-2xl">
-        <style>{`
+    <div className="scroll-profile fixed inset-0 z-[100] h-screen w-full max-w-full overflow-y-auto overflow-x-hidden bg-black text-white backdrop-blur-2xl">
+<style>{`
   .scroll-profile{
     scrollbar-width: thin;
-    scrollbar-color: rgba(52,211,153,.95) rgba(12,18,16,.95);
+    scrollbar-color: rgba(103,232,249,.95) rgba(8,15,18,.95);
   }
 
   .scroll-profile::-webkit-scrollbar{
@@ -186,8 +207,8 @@ const buildItems = [
   .scroll-profile::-webkit-scrollbar-track{
     background: linear-gradient(
       180deg,
-      rgba(10,18,15,.95),
-      rgba(18,30,26,.95)
+      rgba(8,15,18,.95),
+      rgba(15,23,42,.95)
     );
     border-left: 1px solid rgba(255,255,255,.06);
   }
@@ -195,35 +216,34 @@ const buildItems = [
   .scroll-profile::-webkit-scrollbar-thumb{
     background: linear-gradient(
       180deg,
-      rgba(110,231,183,.95),
-      rgba(16,185,129,.9),
-      rgba(5,150,105,.9)
+      rgba(103,232,249,.95),
+      rgba(129,140,248,.9),
+      rgba(244,114,182,.82)
     );
-    border: 2px solid rgba(10,18,15,.95);
+    border: 2px solid rgba(8,15,18,.95);
     border-radius: 999px;
     box-shadow:
-      0 0 16px rgba(16,185,129,.45),
-      inset 0 0 8px rgba(255,255,255,.18);
+      0 0 16px rgba(103,232,249,.35),
+      inset 0 0 8px rgba(255,255,255,.16);
   }
 
   .scroll-profile::-webkit-scrollbar-thumb:hover{
     background: linear-gradient(
       180deg,
-      rgba(167,243,208,1),
-      rgba(52,211,153,1),
-      rgba(16,185,129,.95)
+      rgba(165,243,252,1),
+      rgba(129,140,248,1),
+      rgba(244,114,182,.95)
     );
     box-shadow:
-      0 0 22px rgba(52,211,153,.65),
-      inset 0 0 10px rgba(255,255,255,.22);
+      0 0 22px rgba(103,232,249,.5),
+      inset 0 0 10px rgba(255,255,255,.2);
   }
 
   .scroll-profile::-webkit-scrollbar-corner{
     background: transparent;
   }
 `}</style>
-      <div className="pointer-events-none absolute left-[-120px] top-20 h-96 w-96 rounded-full bg-emerald-400/20 blur-[130px]" />
-      <div className="pointer-events-none absolute bottom-[-120px] right-[-120px] h-96 w-96 rounded-full bg-emerald-500/15 blur-[140px]" />
+     <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(8,145,178,0.18),transparent_28%),radial-gradient(circle_at_85%_30%,rgba(79,70,229,0.16),transparent_30%),linear-gradient(135deg,rgba(103,232,249,0.08),transparent_36%,rgba(129,140,248,0.08))]" />
 
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:70px_70px] opacity-20" />
 
@@ -232,7 +252,7 @@ const buildItems = [
         <button
             type="button"
             onClick={onClose}
-            className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/10 text-white shadow-2xl transition-all duration-300 hover:scale-105 hover:border-emerald-400/50 hover:bg-emerald-400 hover:text-[#111]"
+            className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.08] text-white shadow-2xl transition-all duration-300 hover:scale-105 hover:border-cyan-300/50 hover:bg-cyan-300 hover:text-black"
             aria-label="Close Profile"
             >
             <X size={24} strokeWidth={2.6} />
@@ -244,10 +264,10 @@ const buildItems = [
         {/* TOP ROW: IMAGE LEFT + CONTENT RIGHT */}
         <div className="grid w-full items-start gap-8 lg:grid-cols-[260px_1fr]">
           <div className="relative w-full max-w-[230px]">
-            <div className="absolute inset-0 rotate-6 rounded-[30px] bg-emerald-400/20 blur-2xl" />
+            <div className="absolute inset-0 rotate-6 rounded-[30px] bg-cyan-300/15 blur-2xl" />
 
-            <div className="relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.04] p-3 shadow-2xl backdrop-blur-xl">
-              <div className="overflow-hidden rounded-[22px] border border-emerald-400/20 bg-[#111]">
+            <div className="relative overflow-hidden rounded-[30px] border border-cyan-300/20 bg-white/[0.035] p-3 shadow-2xl backdrop-blur-xl">
+              <div className="overflow-hidden rounded-[22px] border border-cyan-300/20 bg-black">
                 <img
                   src={profileImage}
                   alt="Mr. Muhammad Suhail"
@@ -256,11 +276,11 @@ const buildItems = [
               </div>
             </div>
 
-            <div className="relative mt-4 rounded-[24px] border border-emerald-400/20 bg-emerald-400/10 p-4 text-center">
+            <div className="relative mt-4 rounded-[24px] border border-cyan-300/20 bg-cyan-300/[0.06] p-4 text-center">
                 <h3 className="text-lg font-black text-white">
                     Mr. Muhammad Suhail
                     </h3>
-                    <p className="mt-1 text-xs font-bold uppercase tracking-[0.2em] text-emerald-300">
+                    <p className="mt-1 text-xs font-bold uppercase tracking-[0.2em] text-cyan-300">
                     Full Stack Developer
                     </p>
             </div>
@@ -268,16 +288,16 @@ const buildItems = [
 
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-        <HiBadgeCheck className="text-4xl text-emerald-300 drop-shadow-[0_0_12px_rgba(52,211,153,0.55)]" />
+        <HiBadgeCheck className="text-4xl text-cyan-300 drop-shadow-[0_0_12px_rgba(103,232,249,0.42)]" />
 
-        <p className="text-sm font-black uppercase tracking-[0.4em] text-emerald-300">
+        <p className="text-sm font-black uppercase tracking-[0.4em] text-cyan-300">
             Professional Profile
         </p>
         </div>
 
             <h2 className="mt-4 text-4xl font-black leading-tight tracking-tight text-white md:text-6xl">
               Mr. Muhammad Suhail
-              <span className="mt-2 block bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-200 bg-clip-text text-transparent">
+              <span className="mt-2 block bg-gradient-to-r from-cyan-300 via-pink-300 to-indigo-300 bg-clip-text text-transparent">
                 Full Stack Developer
               </span>
             </h2>
@@ -308,49 +328,60 @@ const buildItems = [
             <InfoCard label="Domain Expertise" value="EDA Tools + LMS Products" />
             </div>
 
-        <div className="mt-8 rounded-[32px] border border-emerald-400/20 bg-emerald-400/10 p-6">
-          <h3 className="text-xl font-black text-emerald-200">Core Skills</h3>
+        <div className="relative mt-8 overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.035] p-6">
+  <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(103,232,249,0.08),transparent_36%,rgba(129,140,248,0.08))]" />
+  <div className="relative">
+         <h3 className="pb-1 bg-gradient-to-r from-cyan-200 via-sky-200 to-indigo-200 bg-clip-text text-xl font-black leading-[1.18] text-transparent">
+  Core Skills
+</h3>
 
           <div className="mt-5 flex flex-wrap gap-3">
             {skills.map((skill) => (
               <span
                 key={skill}
-                className="rounded-full border border-emerald-400/25 bg-[#1e1e1e]/70 px-4 py-2 text-sm font-bold text-emerald-200"
+                className="rounded-full border border-cyan-300/20 bg-black/35 px-4 py-2 text-sm font-bold text-cyan-100 transition-all duration-300 hover:border-indigo-300/35 hover:text-indigo-100"
               >
                 {skill}
               </span>
             ))}
-          </div>
+                   </div>
+        </div>
         </div>
 
-        <div className="mt-8 rounded-[32px] border border-white/10 bg-white/[0.04] p-6">
-          <h3 className="text-xl font-black text-white">What I Can Build</h3>
+        <div className="relative mt-8 overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.035] p-6">
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(103,232,249,0.08),transparent_36%,rgba(129,140,248,0.08))]" />
+          <div className="relative">
+          <h3 className="pb-1 bg-gradient-to-r from-cyan-200 via-sky-200 to-indigo-200 bg-clip-text text-xl font-black leading-[1.18] text-transparent">
+            What I Can Build
+          </h3>
 
           <div className="mt-5 grid gap-3 md:grid-cols-2">
             {buildItems.map((item) => (
               <div
                 key={item}
-                className="rounded-2xl border border-white/10 bg-[#111]/60 px-4 py-3 text-sm font-semibold leading-6 text-white/70"
+                className="rounded-2xl border border-cyan-300/15 bg-black/35 px-4 py-3 text-sm font-semibold leading-6 text-slate-300 transition-all duration-300 hover:border-indigo-300/30 hover:bg-indigo-400/[0.06]"
               >
                 {item}
               </div>
             ))}
           </div>
         </div>
+        </div>
 
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-        <a
-          href="/contact"
-          onClick={onClose}
-          className="rounded-full bg-emerald-400 px-8 py-4 text-center text-sm font-black text-[#111] shadow-[0_0_40px_rgba(16,185,129,0.28)] transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-300"
-        >
-          Contact Me
-        </a>
+        <button
+          type="button"
+          onClick={handleContactClick}
+          className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-cyan-300 via-indigo-300 to-pink-300 px-8 py-4 text-sm font-black text-black transition-all duration-300 hover:scale-105"
+          >
+        Contact Me
+        <ShieldCheck size={18} />
+        </button>
 
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-black text-white transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/40 hover:text-emerald-300"
+           className="rounded-full border border-cyan-300/20 bg-white/[0.035] px-8 py-4 text-sm font-black text-cyan-100 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300/40 hover:bg-white/[0.07] hover:text-indigo-100"
           >
             Back To Website
           </button>
