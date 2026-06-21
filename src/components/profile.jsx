@@ -339,13 +339,13 @@ const buildItems = [
         </div>
 
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-          <a
-            href="#contact"
-            onClick={onClose}
-            className="rounded-full bg-emerald-400 px-8 py-4 text-center text-sm font-black text-[#111] shadow-[0_0_40px_rgba(16,185,129,0.28)] transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-300"
-          >
-            Contact Me
-          </a>
+        <a
+          href="/contact"
+          onClick={onClose}
+          className="rounded-full bg-emerald-400 px-8 py-4 text-center text-sm font-black text-[#111] shadow-[0_0_40px_rgba(16,185,129,0.28)] transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-300"
+        >
+          Contact Me
+        </a>
 
           <button
             type="button"

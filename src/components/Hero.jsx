@@ -34,7 +34,7 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] overflow-hidden bg-black pt-20"
+      className="relative min-h-[100svh] overflow-hidden bg-black pt-[116px]"
     >
       {/* Background Video */}
       <video
@@ -72,7 +72,7 @@ function Hero() {
       </button>
 
       {/* Foreground Text */}
-      <div className="relative z-10 flex min-h-[calc(100svh-90px)] items-center justify-center px-5 text-center md:px-10">
+      <div className="relative z-10 flex min-h-[calc(100svh-116px)] items-center justify-center px-5 text-center md:px-10">
         <div className="max-w-6xl">
          
 
@@ -93,13 +93,13 @@ function Hero() {
         <span>Explore Projects</span>
       </Link>
 
-      <a
-        href="#contact"
+      <Link
+        to="/contact"
         className="group inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-indigo-400 via-emerald-500 to-indigo-500 px-9 py-3 text-md font-black text-slate-800 shadow-[0_0_35px_rgba(16,185,129,0.35)] transition-all duration-300 hover:scale-105 hover:text-slate-100"
       >
         <span>Contact Us</span>
         <FaCircleArrowRight className="text-xl transition-transform duration-300 group-hover:translate-x-1" />
-      </a>
+      </Link>
       </div>
         </div>
       </div>

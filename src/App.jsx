@@ -10,6 +10,8 @@ import SchematicDetails from "./components/projects folder/schematicDetails";
 import SecondProject from "./components/projects folder/secondProject";
 import ThirdProject from "./components/projects folder/ThirdProject";
 import FourthProject from "./components/projects folder/FourthProject";
+import FifthProject from "./components/projects folder/fifthProject";
+import SixthProject from "./components/projects folder/sixthProject";
 
 function LandingPage() {
   return (
@@ -26,6 +28,14 @@ function ProjectsPage() {
   return <Projects variant="full" />;
 }
 
+function AboutPage() {
+  return <AboutUs isPage />;
+}
+
+function ContactPage() {
+  return <ContactUs isPage />;
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -35,10 +45,14 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/schematicDetails" element={<SchematicDetails />} />
           <Route path="/secondProject" element={<SecondProject />} />
           <Route path="/thirdProject" element={<ThirdProject />} />
           <Route path="/fourthProject" element={<FourthProject />} />
+          <Route path="/fifthProject" element={<FifthProject />} />
+          <Route path="/sixthProject" element={<SixthProject />} />
         </Routes>
 
         <Footer />
