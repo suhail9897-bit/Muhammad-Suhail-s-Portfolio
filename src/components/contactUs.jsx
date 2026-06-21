@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+
 import {
   Mail,
   Phone,
@@ -13,6 +15,27 @@ const emailAddress = "techsuhail62@gmail.com";
 const phoneNumber = "+91 98706 99801";
 
 function ContactUs({ isPage = false }) {
+  const contactHeadingRef = useRef(null);
+  const [contactHeadingVisible, setContactHeadingVisible] = useState(false);
+
+  useEffect(() => {
+    const target = contactHeadingRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setContactHeadingVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.35,
+      }
+    );
+
+    observer.observe(target);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="contact"
@@ -24,7 +47,7 @@ function ContactUs({ isPage = false }) {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:80px_80px] opacity-30" />
 
       <div className="relative mx-auto max-w-9xl">
-        <div className="mx-auto mb-16 max-w-5xl text-center">
+        <div ref={contactHeadingRef} className="mx-auto mb-16 max-w-5xl text-center">
           <div className="mx-auto inline-flex items-center justify-center gap-3 rounded-full border border-cyan-300/20 bg-white/[0.035] px-5 py-2">
             <Sparkles size={18} className="text-cyan-300" />
             <p className="text-sm font-black uppercase tracking-[0.35em] text-cyan-300">
@@ -32,12 +55,18 @@ function ContactUs({ isPage = false }) {
             </p>
           </div>
 
-          <h2 className="mt-6 pb-2 bg-gradient-to-r from-white via-cyan-100 to-indigo-200 bg-clip-text text-4xl font-black leading-[1.16] tracking-tight text-transparent md:text-7xl md:leading-[1.16]">
-            Let’s build something
-            <span className="block bg-gradient-to-r from-cyan-300 via-pink-300 to-indigo-300 bg-clip-text text-transparent">
-              serious together.
-            </span>
-          </h2>
+      <h2
+        className={`mt-6 transform pb-2 bg-gradient-to-r from-white via-cyan-100 to-indigo-200 bg-clip-text text-4xl font-black leading-[1.16] tracking-tight text-transparent transition-all duration-[1100ms] ease-out md:text-7xl md:leading-[1.16] ${
+          contactHeadingVisible
+            ? "translate-x-0 opacity-100"
+            : "-translate-x-24 opacity-0"
+        }`}
+      >
+        Let’s build something
+        <span className="block bg-gradient-to-r from-cyan-300 via-pink-300 to-indigo-300 bg-clip-text text-transparent">
+          serious together.
+        </span>
+      </h2>
 
           <p className="mx-auto mt-6 max-w-4xl text-base font-semibold leading-8 text-slate-300 md:text-lg">
             For freelance projects, full stack work, LMS platforms, EDA tools,

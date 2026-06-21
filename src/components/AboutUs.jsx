@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import {
   Atom,
   BadgeCheck,
@@ -137,6 +138,27 @@ const aboutVideos = [
 ];
 
 function AboutUs({ isPage = false }) {
+  const aboutHeadingRef = useRef(null);
+  const [aboutHeadingVisible, setAboutHeadingVisible] = useState(false);
+
+  useEffect(() => {
+    const target = aboutHeadingRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setAboutHeadingVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.35,
+      }
+    );
+
+    observer.observe(target);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="about"
@@ -148,7 +170,7 @@ function AboutUs({ isPage = false }) {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:80px_80px] opacity-30" />
 
       <div className="relative mx-auto max-w-9xl">
-        <div className="mx-auto max-w-5xl text-center">
+        <div ref={aboutHeadingRef} className="mx-auto max-w-5xl text-center">
           <div className="mx-auto inline-flex items-center justify-center gap-3 rounded-full border border-cyan-300/20 bg-white/[0.035] px-5 py-2">
             <Sparkles size={18} className="text-cyan-300" />
             <p className="text-sm font-black uppercase tracking-[0.35em] text-cyan-300">
@@ -156,22 +178,22 @@ function AboutUs({ isPage = false }) {
             </p>
           </div>
 
-          <h2 className="mt-6 pb-2 bg-gradient-to-r from-white via-cyan-100 to-indigo-200 bg-clip-text text-4xl font-black leading-[1.16] tracking-tight text-transparent md:text-7xl md:leading-[1.16]">
-            I build full stack products,
-            <span className="block bg-gradient-to-r from-cyan-300 via-pink-300 to-indigo-300 bg-clip-text text-transparent">
-              LMS platforms, EDA tools
-            </span>
-            and mobile apps.
-          </h2>
+      <h2
+        className={`mt-6 transform pb-2 bg-gradient-to-r from-white via-cyan-100 to-indigo-200 bg-clip-text text-4xl font-black leading-[1.16] tracking-tight text-transparent transition-all duration-[1100ms] ease-out md:text-7xl md:leading-[1.16] ${
+          aboutHeadingVisible
+            ? "translate-x-0 opacity-100"
+            : "-translate-x-24 opacity-0"
+        }`}
+      >
+        I build full stack products,
+        <span className="block bg-gradient-to-r from-cyan-300 via-pink-300 to-indigo-300 bg-clip-text text-transparent">
+          LMS platforms, EDA tools
+        </span>
+        and mobile apps.
+      </h2>
 
         <p className="mx-auto mt-7 max-w-4xl text-base font-semibold leading-8 text-slate-300 md:text-lg">
-          I am Mr. Muhammad Suhail, a full stack developer with 2+ years of
-          professional experience and 10+ major projects. My work covers
-          complex LMS platforms, EDA schematic tools, parent progress systems,
-          teacher marketplace products, React Native mobile apps and
-          interactive physics simulations. Every project showcased here was
-          designed and developed individually by me, from planning and UI
-          architecture to core logic, integration and deployment.
+          Leveraging 2+ years of professional full-stack expertise to architect scalable web applications, cross-platform mobile apps, and specialized digital tooling. The featured selection of 10+ major projects showcases deep-dive capabilities in engineering complex data architectures, from multi-role LMS platforms and industry-standard EDA schematic designers to real-time physics simulations. Every single project represents comprehensive solo ownership—built completely from the ground up through UI design, data structure planning, core logical processing, and seamless cloud deployment.
         </p>
        </div>
 

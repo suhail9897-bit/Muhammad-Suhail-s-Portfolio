@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Tooltip from "../utility files/tooltip";
 import Profile from "./profile";
 import { IoIosPerson } from "react-icons/io";
 import { FaWhatsapp } from "react-icons/fa6";
-import { Mail, Phone, Sparkles } from "lucide-react";
+import { TbBrandLinkedinFilled } from "react-icons/tb";
+import { Mail, Phone } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -16,15 +17,19 @@ const navLinks = [
 const emailAddress = "techsuhail62@gmail.com";
 const phoneNumber = "+91 98706 99801";
 const whatsappNumber = "919870699801";
+const linkedInUrl = "https://www.linkedin.com/in/muhammad-suhail-b97335356";
 
 function Header() {
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [headerReady, setHeaderReady] = useState(false);
   const [headerHidden, setHeaderHidden] = useState(false);
 
+
   const lastScrollY = useRef(0);
   const scrollTimer = useRef(null);
+  
 
   useEffect(() => {
     const loadTimer = setTimeout(() => {
@@ -66,6 +71,21 @@ function Header() {
 
   const closeMobileMenu = () => setOpen(false);
 
+  const handleNavClick = (event, href) => {
+  closeMobileMenu();
+
+  if (href === "/" && location.pathname === "/") {
+    event.preventDefault();
+
+    setHeaderHidden(false);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+};
+
   return (
     <>
       <header
@@ -73,39 +93,49 @@ function Header() {
           headerReady && !headerHidden ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <div className="border-b border-white/10 bg-black/25 px-5 py-2 md:px-10">
-          <div className="mx-auto flex max-w-9xl items-center justify-between gap-4">
-            <div className="flex flex-wrap items-center gap-4 text-xs font-bold text-slate-300 md:text-sm">
-              <a
-                href={`mailto:${emailAddress}`}
-                className="inline-flex items-center gap-2 transition-all duration-300 hover:text-cyan-300"
-              >
-                <Mail size={15} className="text-cyan-300" />
-                <span>{emailAddress}</span>
-              </a>
+   <div className="border-b border-white/10 bg-black/25 px-5 py-2 md:px-10">
+      <div className="mx-auto flex max-w-9xl items-center justify-start">
+        <div className="flex flex-wrap items-center gap-4 text-xs font-bold text-slate-300 md:text-sm">
+          <a
+            href={`mailto:${emailAddress}`}
+            className="inline-flex items-center gap-2 transition-all duration-300 hover:text-cyan-300"
+          >
+            <Mail size={15} className="text-cyan-300" />
+            <span>{emailAddress}</span>
+          </a>
 
-              <a
-                href={`tel:${phoneNumber.replaceAll(" ", "")}`}
-                className="inline-flex items-center gap-2 transition-all duration-300 hover:text-cyan-300"
-              >
-                <Phone size={15} className="text-cyan-300" />
-                <span>{phoneNumber}</span>
-              </a>
-            </div>
+          <a
+            href={`tel:${phoneNumber.replaceAll(" ", "")}`}
+            className="inline-flex items-center gap-2 transition-all duration-300 hover:text-cyan-300"
+          >
+            <Phone size={15} className="text-cyan-300" />
+            <span>{phoneNumber}</span>
+          </a>
 
-            <a
-              href={`https://wa.me/${whatsappNumber}`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/[0.08] text-xl text-emerald-400 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/45 hover:bg-cyan-300 hover:text-black"
-              aria-label="WhatsApp"
-            >
-              <FaWhatsapp />
-            </a>
-          </div>
+          <a
+            href={linkedInUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/[0.08] text-xl text-sky-500 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/45 hover:bg-cyan-300 hover:text-black"
+            aria-label="LinkedIn"
+          >
+            <TbBrandLinkedinFilled />
+          </a>
+
+          <a
+            href={`https://wa.me/${whatsappNumber}`}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/[0.08] text-xl text-emerald-400 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/45 hover:bg-cyan-300 hover:text-black"
+            aria-label="WhatsApp"
+          >
+            <FaWhatsapp />
+          </a>
         </div>
+      </div>
+    </div>
 
-        <nav className="mx-auto grid h-20 max-w-9xl grid-cols-[1fr_auto_1fr] items-center px-5 md:px-10">
+       <nav className="mx-auto grid h-20 max-w-9xl grid-cols-[1fr_auto] items-center px-5 md:grid-cols-[1fr_auto_1fr] md:px-10">
           <div className="group flex items-center gap-3 justify-self-start">
             <Tooltip title="Open Profile" text="Open Profile">
               <button
@@ -118,7 +148,7 @@ function Header() {
               </button>
             </Tooltip>
 
-            <Link to="/" onClick={closeMobileMenu}>
+            <Link to="/" onClick={(event) => handleNavClick(event, "/")}>
               <h1 className="text-lg font-black tracking-wide text-white">
                 Portfolio
               </h1>
@@ -128,21 +158,22 @@ function Header() {
             </Link>
           </div>
 
-          <div className="hidden items-center gap-2 justify-self-center md:flex">
+          <div className="hidden items-center gap-2 justify-self-center md:col-start-2 md:flex">
             {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                className="rounded-full px-5 py-2 text-lg font-semibold text-white/90 transition-all duration-300 hover:bg-cyan-300/[0.08] hover:text-cyan-300"
-              >
-                {link.name}
-              </Link>
+           <Link
+            key={link.name}
+            to={link.href}
+            onClick={(event) => handleNavClick(event, link.href)}
+            className="rounded-full px-5 py-2 text-lg font-semibold text-white/90 transition-all duration-300 hover:bg-cyan-300/[0.08] hover:text-emerald-500"
+          >
+            {link.name}
+          </Link>
             ))}
           </div>
 
           <button
             onClick={() => setOpen((prev) => !prev)}
-            className="flex h-11 w-11 items-center justify-center justify-self-end rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.08] text-white transition-all duration-300 hover:border-cyan-300/45 hover:bg-cyan-300 hover:text-black md:hidden"
+            className="col-start-2 flex h-11 w-11 items-center justify-center justify-self-end rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.08] text-white transition-all duration-300 hover:border-cyan-300/45 hover:bg-cyan-300 hover:text-black md:hidden"
             aria-label="Toggle Menu"
           >
             <span className="text-2xl leading-none">{open ? "×" : "≡"}</span>
@@ -153,14 +184,14 @@ function Header() {
   <div className="border-t border-cyan-300/15 bg-gradient-to-br from-zinc-950 via-cyan-950/80 to-zinc-950 px-5 py-5 backdrop-blur-xl md:hidden">
     <div className="flex flex-col gap-3">
       {navLinks.map((link) => (
-        <Link
-          key={link.name}
-          to={link.href}
-          onClick={closeMobileMenu}
-          className="rounded-2xl border border-cyan-300/15 bg-cyan-300/[0.055] px-5 py-4 text-sm font-black text-cyan-100 transition-all duration-300 hover:border-indigo-300/30 hover:bg-indigo-400/[0.08] hover:text-white"
-        >
-          {link.name}
-        </Link>
+      <Link
+        key={link.name}
+        to={link.href}
+        onClick={(event) => handleNavClick(event, link.href)}
+        className="rounded-2xl border border-cyan-300/15 bg-cyan-300/[0.055] px-5 py-4 text-sm font-black text-cyan-100 transition-all duration-300 hover:border-indigo-300/30 hover:bg-indigo-400/[0.08] hover:text-white"
+      >
+        {link.name}
+      </Link>
       ))}
     </div>
   </div>

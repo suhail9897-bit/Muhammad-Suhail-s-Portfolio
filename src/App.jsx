@@ -1,5 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Projects from "./components/projects";
@@ -12,6 +12,20 @@ import ThirdProject from "./components/projects folder/ThirdProject";
 import FourthProject from "./components/projects folder/FourthProject";
 import FifthProject from "./components/projects folder/fifthProject";
 import SixthProject from "./components/projects folder/sixthProject";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [pathname]);
+
+  return null;
+}
 
 function LandingPage() {
   return (
@@ -39,6 +53,7 @@ function ContactPage() {
 function App() {
   return (
     <BrowserRouter>
+     <ScrollToTop />
       <div className="min-h-screen bg-black text-white">
         <Header />
 

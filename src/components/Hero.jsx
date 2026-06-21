@@ -3,6 +3,7 @@ import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { FaCircleArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { Layers,ShieldCheck,} from "lucide-react";
 
 import Hero1 from "../assets/Hero1.mp4";
 import Hero2 from "../assets/Hero2.mp4";
@@ -12,6 +13,7 @@ const heroVideos = [Hero1, Hero2, Hero3];
 
 function Hero() {
   const [activeVideo, setActiveVideo] = useState(0);
+  const [heroLoaded, setHeroLoaded] = useState(false);
 
   const nextVideo = () => {
     setActiveVideo((prev) => (prev + 1) % heroVideos.length);
@@ -30,6 +32,14 @@ function Hero() {
 
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+  const loadTimer = setTimeout(() => {
+    setHeroLoaded(true);
+  }, 180);
+
+  return () => clearTimeout(loadTimer);
+}, []);
 
   return (
     <section
@@ -73,7 +83,13 @@ function Hero() {
 
       {/* Foreground Text */}
       <div className="relative z-10 flex min-h-[calc(100svh-116px)] items-center justify-center px-5 text-center md:px-10">
-        <div className="max-w-6xl">
+        <div
+          className={`max-w-6xl transform transition-all duration-[1100ms] ease-out ${
+            heroLoaded
+              ? "translate-y-0 opacity-100"
+              : "translate-y-16 opacity-0"
+          }`}
+        >
          
 
           <h1 className="text-5xl font-black leading-[1.05] tracking-tight text-white drop-shadow-[0_8px_35px_rgba(0,0,0,0.85)] md:text-7xl xl:text-8xl">
@@ -84,21 +100,27 @@ function Hero() {
             Solutions
           </h1>
 
-      <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <div
+          className={`mt-10 flex flex-col items-center justify-center gap-4 transition-all delay-300 duration-[900ms] ease-out sm:flex-row ${
+            heroLoaded
+              ? "translate-y-0 opacity-100"
+              : "translate-y-10 opacity-0"
+          }`}
+        >
         <Link
         to="/projects"
-        className="group inline-flex items-center justify-center gap-3 rounded-full border border-white/20 bg-gradient-to-r from-indigo-400 via-emerald-500 to-indigo-500 px-7 py-3 text-md font-black text-slate-800 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-transparent hover:text-slate-100"
-      >
-        <FaCircleArrowLeft className="text-xl transition-transform duration-300 group-hover:-translate-x-1" />
-        <span>Explore Projects</span>
+        className="inline-flex items-center justify-center gap-3 rounded-full border border-cyan-300/25 bg-white/[0.045] px-8 py-4 text-sm font-black text-cyan-100 transition-all duration-300 hover:scale-105 hover:bg-white/[0.08]"
+            >
+              View My Projects
+              <Layers size={18} />
       </Link>
 
       <Link
         to="/contact"
-        className="group inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-indigo-400 via-emerald-500 to-indigo-500 px-9 py-3 text-md font-black text-slate-800 shadow-[0_0_35px_rgba(16,185,129,0.35)] transition-all duration-300 hover:scale-105 hover:text-slate-100"
-      >
-        <span>Contact Us</span>
-        <FaCircleArrowRight className="text-xl transition-transform duration-300 group-hover:translate-x-1" />
+      className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-cyan-300 via-indigo-300 to-pink-300 px-8 py-4 text-sm font-black text-black transition-all duration-300 hover:scale-105"
+       >
+        Contact Me
+        <ShieldCheck size={18} />
       </Link>
       </div>
         </div>

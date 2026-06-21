@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Sparkles,
@@ -192,6 +193,27 @@ function Projects({ variant = "preview" }) {
   const isPreview = variant === "preview";
   const visibleProjects = isPreview ? projects.slice(0, 4) : projects;
 
+    const headingRef = useRef(null);
+  const [headingVisible, setHeadingVisible] = useState(false);
+
+  useEffect(() => {
+    const target = headingRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHeadingVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.35,
+      }
+    );
+
+    observer.observe(target);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="projects"
@@ -203,7 +225,7 @@ function Projects({ variant = "preview" }) {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:80px_80px] opacity-30" />
 
       <div className="relative mx-auto max-w-9xl">
-        <div className="mx-auto mb-16 max-w-5xl text-center">
+       <div ref={headingRef} className="mx-auto mb-16 max-w-5xl text-center">
           <div className="mx-auto inline-flex items-center justify-center gap-3 rounded-full border border-cyan-300/20 bg-white/[0.035] px-5 py-2">
             <Sparkles size={18} className="text-cyan-300" />
             <p className="text-sm font-black uppercase tracking-[0.35em] text-cyan-300">
@@ -211,10 +233,23 @@ function Projects({ variant = "preview" }) {
             </p>
           </div>
 
-          <h2 className="mt-6 text-5xl font-black tracking-tight text-white md:text-7xl">
+          <h2
+            className={`mt-6 transform text-5xl font-black tracking-tight text-white transition-all duration-[1000ms] ease-out md:text-7xl ${
+              headingVisible
+                ? "translate-x-0 opacity-100"
+                : "-translate-x-24 opacity-0"
+            }`}
+          >
             {isPreview ? "My Projects" : "All Projects"}
           </h2>
 
+        <div
+          className={`transform transition-all delay-300 duration-[900ms] ease-out ${
+            headingVisible
+              ? "translate-y-0 opacity-100"
+              : "translate-y-14 opacity-0"
+          }`}
+        >
           <p className="mx-auto mt-6 max-w-3xl text-base font-medium leading-8 text-white/60 md:text-lg">
             A focused collection of full stack, LMS, EDA, dashboard and mobile
             app projects built with scalable architecture, clean UI and real
@@ -225,6 +260,7 @@ function Projects({ variant = "preview" }) {
             <SiReact className="text-xl text-cyan-400" />
             Built with React, Vite, Tailwind and modern component architecture
           </div>
+        </div>
         </div>
 
         <div className="mb-14 grid gap-4 md:grid-cols-2 xl:grid-cols-4">

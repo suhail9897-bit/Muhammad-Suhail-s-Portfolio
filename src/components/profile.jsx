@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import profileImage from "../assets/profile _image.jpg";
+import profileImage from "../assets/profile_image2.png";
 import Tooltip from "../utility files/tooltip";
 import { X } from "lucide-react";
 import { HiBadgeCheck } from "react-icons/hi";
