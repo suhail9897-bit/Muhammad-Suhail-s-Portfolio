@@ -179,8 +179,8 @@ function Projects({ variant = "preview" }) {
             production-style workflows.
           </p>
 
-          <div className="mx-auto mt-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.035] px-5 py-3 text-sm font-bold text-white/70">
-            <SiReact className="text-xl text-cyan-200" />
+          <div className="mx-auto mt-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.035] px-5 py-3 text-sm font-bold text-emerald-400">
+            <SiReact className="text-xl text-cyan-400" />
             Built with React, Vite, Tailwind and modern component architecture
           </div>
         </div>
@@ -191,8 +191,8 @@ function Projects({ variant = "preview" }) {
               key={item.label}
               className="rounded-[26px] border border-white/10 bg-white/[0.035] p-5 text-center"
             >
-              <h3 className="text-3xl font-black text-white">{item.value}</h3>
-              <p className="mt-2 text-sm font-bold uppercase tracking-[0.18em] text-white/45">
+              <h3 className="text-3xl font-black text-emerald-500">{item.value}</h3>
+              <p className="mt-2 text-sm font-bold uppercase tracking-[0.18em] text-white/75">
                 {item.label}
               </p>
             </div>
