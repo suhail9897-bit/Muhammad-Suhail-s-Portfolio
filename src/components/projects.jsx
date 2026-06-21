@@ -9,6 +9,9 @@ import {
 import { MdDashboardCustomize } from "react-icons/md";
 import { SiReact, SiMongodb, SiNodedotjs } from "react-icons/si";
 import schematicProjectImage from "../assets/schematic project/image.png";
+import lmsProjectImage from "../assets/second Project/image.png";
+import thirdProjectImage from "../assets/Third Project/image1.png";
+import fourthProjectImage from "../assets/fourth Project/image.jpeg";
 
 const projects = [
 {
@@ -22,25 +25,31 @@ const projects = [
 },
 {
   title: "Enterprise LMS Platform",
-  type: "Full Stack LMS",
-  desc: "A complete LMS ecosystem with admin, candidate, training, tests, progress tracking, notices, book reader and role-based workflows.",
-  stack: ["React", "Node.js", "MongoDB", "REST APIs"],
-  icon: MdDashboardCustomize,
+  type: "Full Stack LMS Product",
+  desc: "A complete LMS with admin and candidate panels, training assignment, tests, progress tracking, notices and learning workflows.",
+  stack: ["React", "Node.js", "Express", "MongoDB", "JWT", "Role-Based Access"],
+  icon: FaLaptopCode,
+  image: lmsProjectImage,
+  detailsPath: "/secondProject",
 },
-  {
-    title: "React Native Mobile App",
-    type: "Mobile App",
-    desc: "Expo-based Android application with login, dashboard, candidate data, test details and mobile-first user experience.",
-    stack: ["React Native", "Expo", "API", "Android"],
-    icon: FaMobileScreen,
-  },
-  {
-    title: "Admin Dashboard System",
-    type: "Dashboard UI",
-    desc: "Premium admin dashboards with tables, filters, CRUD workflows, analytics-style layouts and responsive interface design.",
-    stack: ["React", "Tailwind", "CRUD", "UI"],
-    icon: SiReact,
-  },
+{
+  title: "Parent-Connected LMS",
+  type: "LMS With Parent Portal",
+  desc: "A subject-based LMS where candidates learn through chapters and tests while parents track child progress.",
+  stack: ["React", "Node.js", "MongoDB", "Subjects", "Parent Portal", "Progress Tracking"],
+  icon: FaLaptopCode,
+  image: thirdProjectImage,
+  detailsPath: "/thirdProject",
+},
+{
+  title: "Parent Progress Mobile App",
+  type: "React Native / Expo App",
+  desc: "A mobile companion app where parents can track their child’s subjects, chapters, tests and overall progress.",
+  stack: ["React Native", "Expo", "TypeScript", "SecureStore", "Progress Tracking"],
+  icon: FaMobileScreen,
+  image: fourthProjectImage,
+  detailsPath: "/fourthProject",
+},
   {
     title: "Simulation Learning Modules",
     type: "Interactive Learning",

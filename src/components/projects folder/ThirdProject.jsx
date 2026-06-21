@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom";
 import {
   ArrowLeft,
+  BarChart3,
   BookOpenCheck,
   BrainCircuit,
   Code2,
   Database,
   GraduationCap,
   Layers,
+  LineChart,
   ListChecks,
   LockKeyhole,
   MonitorCheck,
+  Parentheses,
   Rocket,
+  School,
   ShieldCheck,
   Sparkles,
   Users,
@@ -18,7 +22,7 @@ import {
   Wrench,
 } from "lucide-react";
 
-import lmsProjectImage from "../../assets/second Project/image.png";
+import thirdProjectDetailImage from "../../assets/Third Project/image 2.png";
 
 const technologies = [
   "React.js",
@@ -30,94 +34,98 @@ const technologies = [
   "JWT Authentication",
   "Role-Based Access",
   "REST APIs",
-  "Multer / File Handling",
-  "Admin Panel",
+  "Subject Management",
   "Candidate Dashboard",
+  "Parents Web App",
+  "Progress Calculation",
+  "Test Result Tracking",
 ];
 
 const challenges = [
-  "Managing different user roles like admin and candidate without mixing their access.",
-  "Building training assignment workflows where candidates see only their assigned content.",
-  "Handling tests, attempts, scores, progress and result status in a clean structure.",
-  "Designing admin-side CRUD flows for candidates, trainings, chapters, notices and tests.",
-  "Keeping the frontend premium, responsive and easy to understand for non-technical users.",
-  "Connecting multiple modules through APIs while keeping the data flow stable and scalable.",
+  "Keeping LMS-2 different from a normal admin-candidate LMS by adding a parent-facing progress tracking layer.",
+  "Calculating overall progress from subjects, subject tests, chapter tests and practice test results.",
+  "Managing subject-based learning where every subject can have chapters, topics, tests and practice workflows.",
+  "Separating candidate, admin and parent-side UI expectations while keeping data connected through APIs.",
+  "Handling stored candidate data, assigned subjects and progress values cleanly on the parents web app.",
+  "Designing a learning dashboard that can explain child progress without making parents interact with complex admin tools.",
 ];
 
 const coreFunctionalities = [
   {
-    title: "Admin Management",
-    desc: "Admins can manage candidates, trainings, chapters, notices, tests and platform content from a structured panel.",
-    icon: MonitorCheck,
+    title: "Subject-Based LMS",
+    desc: "The system is organized around subjects, chapters, topics, tests and practice workflows.",
+    icon: School,
   },
   {
-    title: "Candidate Dashboard",
-    desc: "Candidates can log in and access assigned trainings, chapters, test details and learning progress.",
+    title: "Candidate Learning Flow",
+    desc: "Candidates can access assigned subjects, view chapter content and attempt linked tests or practice tests.",
+    icon: GraduationCap,
+  },
+  {
+    title: "Parents Web App",
+    desc: "Parents can log in and track the child’s learning progress, subject performance and completion status.",
     icon: Users,
   },
   {
-    title: "Test & Progress Flow",
-    desc: "The LMS tracks test attempts, scores, pass/fail status, completed chapters and progress summaries.",
-    icon: ListChecks,
-  },
-  {
-    title: "Secure API System",
-    desc: "Protected backend routes, authentication and role-based access keep admin and candidate workflows separated.",
-    icon: LockKeyhole,
+    title: "Progress Analytics",
+    desc: "Progress is calculated from subject tests, chapter tests and practice results to show learning performance.",
+    icon: BarChart3,
   },
 ];
 
 const useCases = [
-  "Online training institutes",
-  "Skill development platforms",
-  "Corporate employee training",
-  "Candidate assessment systems",
-  "Course and chapter management",
-  "Internal company learning portals",
+  "School learning platforms",
+  "Coaching institute LMS",
+  "Parent-child progress tracking",
+  "Subject-wise online learning",
+  "Candidate assessment portals",
+  "Academic performance dashboards",
 ];
 
 const educationContribution = [
   {
-    title: "Structured Learning",
-    desc: "Students and candidates can follow organized chapters, tests and training modules instead of scattered content.",
+    title: "Parent Visibility",
+    desc: "Parents can see how their child is performing instead of depending only on offline reports.",
+    icon: Users,
+  },
+  {
+    title: "Subject-Wise Learning",
+    desc: "The platform structures learning around subjects, chapters, tests and practice activities.",
     icon: BookOpenCheck,
   },
   {
-    title: "Progress Tracking",
-    desc: "Admins and learners can understand performance through scores, attempts and completion tracking.",
-    icon: GraduationCap,
-  },
-  {
-    title: "Assessment Driven Growth",
-    desc: "Tests and results help identify learning gaps and improve candidate preparation.",
-    icon: BrainCircuit,
+    title: "Performance Awareness",
+    desc: "Progress data helps students, parents and institutes identify where improvement is needed.",
+    icon: LineChart,
   },
 ];
 
 const bestFeatures = [
-  "Admin and candidate panels",
-  "Training assignment workflow",
-  "Chapter-based learning structure",
-  "Test and result tracking",
-  "Progress summary system",
-  "Notice management",
-  "Secure authentication",
-  "Responsive premium UI",
-  "Backend API integration",
-  "Database-driven architecture",
+  "Admin dashboard",
+  "Candidate dashboard",
+  "Parents web app",
+  "Subject-wise progress",
+  "Chapter learning flow",
+  "Subject tests",
+  "Chapter tests",
+  "Practice test results",
+  "Overall progress calculation",
+  "Secure login flow",
+  "MongoDB-driven structure",
+  "Responsive dashboard UI",
 ];
 
 const demonstratedSkills = [
-  "Full stack development",
+  "Multi-panel product architecture",
   "React dashboard development",
-  "Backend API architecture",
-  "MongoDB schema design",
-  "Authentication and authorization",
-  "Role-based access control",
-  "Complex CRUD workflow handling",
-  "Candidate progress logic",
-  "UI/UX design for LMS products",
-  "Production-style project structuring",
+  "Parent portal design",
+  "Subject-based LMS logic",
+  "Progress calculation logic",
+  "Backend API integration",
+  "MongoDB schema handling",
+  "Authentication workflow",
+  "Role-based product thinking",
+  "Education product development",
 ];
 
 function DetailCard({ icon: Icon, title, desc }) {
@@ -127,7 +135,7 @@ function DetailCard({ icon: Icon, title, desc }) {
         <Icon size={26} />
       </div>
 
-      <h3 className="mt-5 pb-1 bg-gradient-to-r from-cyan-200 via-sky-200 to-indigo-200 bg-clip-text text-xl font-black text-transparent">
+      <h3 className="mt-5 pb-1 bg-gradient-to-r from-cyan-200 via-sky-200 to-indigo-200 bg-clip-text text-xl font-black leading-[1.22] text-transparent">
         {title}
       </h3>
 
@@ -148,7 +156,7 @@ function SectionTitle({ icon: Icon, label, title, desc }) {
         </p>
       </div>
 
-      <h2 className="mt-5 pb-2 bg-gradient-to-r from-white via-cyan-100 to-indigo-200 bg-clip-text text-3xl font-black tracking-tight text-transparent md:text-5xl">
+      <h2 className="mt-5 pb-2 bg-gradient-to-r from-white via-cyan-100 to-indigo-200 bg-clip-text text-3xl font-black leading-[1.18] tracking-tight text-transparent md:text-5xl md:leading-[1.18]">
         {title}
       </h2>
 
@@ -161,7 +169,7 @@ function SectionTitle({ icon: Icon, label, title, desc }) {
   );
 }
 
-function SecondProject() {
+function ThirdProject() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-black px-5 pt-32 pb-24 text-white md:px-10">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(8,145,178,0.18),transparent_30%),radial-gradient(circle_at_85%_25%,rgba(79,70,229,0.14),transparent_30%)]" />
@@ -179,49 +187,49 @@ function SecondProject() {
         <div className="mt-5 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <div className="inline-flex items-center gap-3 rounded-full border border-cyan-300/20 bg-white/[0.035] px-5 py-2">
-              <GraduationCap size={18} className="text-cyan-300" />
+              <Parentheses size={18} className="text-cyan-300" />
               <p className="text-sm font-black uppercase tracking-[0.3em] text-cyan-300">
-                Full Stack LMS Product
+                Subject-Based LMS With Parent Portal
               </p>
             </div>
 
-            <h1 className="mt-6 text-5xl font-black leading-[1.12] tracking-tight text-white md:text-7xl">
-              Enterprise LMS
+            <h1 className="mt-6 text-5xl font-black leading-[1.16] tracking-tight text-white md:text-7xl md:leading-[1.16]">
+              Parent-Connected
               <span className="block pb-4 bg-gradient-to-r from-cyan-300 via-emerald-300 to-indigo-300 bg-clip-text text-transparent">
-                Platform
+                LMS Platform
               </span>
             </h1>
 
             <p className="mt-6 max-w-4xl text-lg font-semibold leading-8 text-slate-300">
-              A full stack learning management system built for managing
-              candidates, trainings, chapters, tests, notices, progress tracking
-              and role-based learning workflows through admin and candidate
-              interfaces.
+              A different type of LMS focused on subject-wise learning,
+              candidate progress and parent visibility. It connects admin,
+              candidate and parents web flows so parents can track child
+              performance through structured progress data.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               <div className="rounded-[24px] border border-cyan-300/15 bg-white/[0.035] p-5">
-                <h3 className="text-3xl font-black text-cyan-200">Admin</h3>
+                <h3 className="text-3xl font-black text-cyan-200">Subjects</h3>
                 <p className="mt-2 text-sm font-bold text-slate-400">
-                  Control Panel
+                  Learning Structure
                 </p>
               </div>
 
               <div className="rounded-[24px] border border-cyan-300/15 bg-white/[0.035] p-5">
                 <h3 className="text-3xl font-black text-indigo-200">
-                  Candidate
+                  Parents
                 </h3>
                 <p className="mt-2 text-sm font-bold text-slate-400">
-                  Learning Flow
+                  Progress View
                 </p>
               </div>
 
               <div className="rounded-[24px] border border-cyan-300/15 bg-white/[0.035] p-5">
                 <h3 className="text-3xl font-black text-emerald-200">
-                  MERN
+                  Tests
                 </h3>
                 <p className="mt-2 text-sm font-bold text-slate-400">
-                  Full Stack
+                  Performance Flow
                 </p>
               </div>
             </div>
@@ -229,8 +237,8 @@ function SecondProject() {
 
           <div className="overflow-hidden rounded-[34px] border border-white/10 bg-white/[0.035] p-4">
             <img
-              src={lmsProjectImage}
-              alt="Enterprise LMS Platform UI"
+              src={thirdProjectDetailImage}
+              alt="Parent Connected LMS UI"
               className="h-[430px] w-full rounded-[26px] object-cover"
             />
           </div>
@@ -241,7 +249,7 @@ function SecondProject() {
             icon={Code2}
             label="Technology Stack"
             title="Technologies Used"
-            desc="This LMS combines a modern React frontend with a Node.js backend, MongoDB database and secure role-based API structure."
+            desc="This LMS uses a MERN-style architecture with a separate parents web app for tracking child learning progress."
           />
 
           <div className="flex flex-wrap gap-3">
@@ -260,8 +268,8 @@ function SecondProject() {
           <SectionTitle
             icon={Workflow}
             label="Core Functionality"
-            title="What The LMS Does"
-            desc="The system is designed as a complete training and assessment product, not just a static course website."
+            title="What This LMS Does"
+            desc="This project is different from the previous LMS because it is subject-driven and includes a dedicated parent progress tracking experience."
           />
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -316,7 +324,7 @@ function SecondProject() {
             icon={GraduationCap}
             label="Education Contribution"
             title="Contribution To Education"
-            desc="This project supports digital learning by giving institutes and organizations a structured way to assign training, track progress, conduct tests and manage learners from one connected system."
+            desc="This project improves education workflows by connecting the student’s learning activity with parent visibility. It helps parents understand subject progress, test performance and chapter completion without needing admin access."
           />
 
           <div className="grid gap-6 md:grid-cols-3">
@@ -354,12 +362,12 @@ function SecondProject() {
             />
 
             <p className="text-base font-semibold leading-8 text-slate-300">
-              Many LMS platforms only show courses and lessons. This project
-              focuses on complete training operations: admin-side candidate
-              control, assigned learning, chapter-based structure, test results,
-              notices, progress summaries and backend-powered workflows. It is
-              designed like a real product instead of a simple course listing
-              website.
+              A normal LMS focuses mainly on admin and learner panels. This LMS
+              adds a separate parents web experience, making it more suitable
+              for school or coaching workflows where parents need visibility
+              into the child’s subject progress, tests and overall learning
+              performance. That parent-facing layer makes this project different
+              from the second LMS project.
             </p>
           </div>
         </div>
@@ -369,7 +377,7 @@ function SecondProject() {
             icon={Layers}
             label="Skills Demonstrated"
             title="Skills This Project Proves"
-            desc="This LMS demonstrates full stack engineering, product thinking, backend architecture and professional dashboard development."
+            desc="This project demonstrates multi-panel architecture, subject-wise product thinking and educational progress tracking."
           />
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
@@ -387,15 +395,14 @@ function SecondProject() {
         <div className="mt-20 rounded-[36px] border border-cyan-300/20 bg-white/[0.04] p-8 text-center">
           <Database className="mx-auto text-cyan-300" size={38} />
 
-          <h2 className="mt-5 bg-gradient-to-r from-cyan-200 via-white to-indigo-200 bg-clip-text text-3xl font-black text-transparent md:text-5xl">
-            Full Stack LMS Architecture
+          <h2 className="mt-5 pb-2 bg-gradient-to-r from-cyan-200 via-white to-indigo-200 bg-clip-text text-3xl font-black leading-[1.18] text-transparent md:text-5xl md:leading-[1.18]">
+            LMS With Parent Progress Tracking
           </h2>
 
           <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-300">
-            This project shows the ability to build a complete learning
-            platform from frontend UI to backend APIs, database models,
-            authentication, admin workflows and candidate-facing product
-            experience.
+            This project proves the ability to build an education platform where
+            students learn through subjects and tests, while parents can monitor
+            progress from a separate dedicated web app.
           </p>
         </div>
       </div>
@@ -403,4 +410,4 @@ function SecondProject() {
   );
 }
 
-export default SecondProject;
+export default ThirdProject;

@@ -7,6 +7,9 @@ import AboutUs from "./components/AboutUs";
 import ContactUs from "./components/contactUs";
 import Footer from "./components/Footer";
 import SchematicDetails from "./components/projects folder/schematicDetails";
+import SecondProject from "./components/projects folder/secondProject";
+import ThirdProject from "./components/projects folder/ThirdProject";
+import FourthProject from "./components/projects folder/FourthProject";
 
 function LandingPage() {
   return (
@@ -33,6 +36,9 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/schematicDetails" element={<SchematicDetails />} />
+          <Route path="/secondProject" element={<SecondProject />} />
+          <Route path="/thirdProject" element={<ThirdProject />} />
+          <Route path="/fourthProject" element={<FourthProject />} />
         </Routes>
 
         <Footer />

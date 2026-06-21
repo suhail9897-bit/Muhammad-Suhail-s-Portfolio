@@ -129,7 +129,7 @@ function DetailCard({ icon: Icon, title, desc }) {
         <Icon size={26} />
       </div>
 
-      <h3 className="mt-5 bg-gradient-to-r from-cyan-200 via-sky-200 to-indigo-200 bg-clip-text text-xl font-black text-transparent">
+      <h3 className="mt-5 pb-1 bg-gradient-to-r from-cyan-200 via-sky-200 to-indigo-200 bg-clip-text text-xl font-black text-transparent">
         {title}
       </h3>
 
@@ -151,7 +151,7 @@ function SectionTitle({ icon: Icon, label, title, desc }) {
         </p>
       </div>
 
-      <h2 className="mt-5 bg-gradient-to-r from-white via-cyan-100 to-indigo-200 bg-clip-text text-3xl font-black tracking-tight text-transparent md:text-5xl">
+      <h2 className="mt-5 pb-2 bg-gradient-to-r from-white via-cyan-100 to-indigo-200 bg-clip-text text-3xl font-black tracking-tight text-transparent md:text-5xl">
         {title}
       </h2>
 
@@ -187,7 +187,7 @@ function SchematicDetails() {
               </p>
             </div>
 
-            <h1 className="mt-6 text-5xl font-black leading-tight tracking-tight text-white md:text-7xl ">
+            <h1 className="mt-6 text-5xl font-black leading-[1.16] tracking-tight text-white md:text-7xl md:leading-[1.16]">
               Schematic Circuit
               <span className="block pb-4 bg-gradient-to-r from-cyan-300 via-emerald-300 to-indigo-300 bg-clip-text text-transparent">
                 Designer
